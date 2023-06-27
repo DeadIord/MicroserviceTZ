@@ -45,21 +45,21 @@ namespace MicroserviceTz.Migrations
                         new
                         {
                             Id = 1,
-                            OrderDate = new DateTime(2023, 6, 23, 15, 35, 35, 628, DateTimeKind.Local).AddTicks(2965),
-                            TotalCost = 130000.0,
+                            OrderDate = new DateTime(2023, 6, 24, 19, 49, 19, 954, DateTimeKind.Local).AddTicks(3813),
+                            TotalCost = 134000.0,
                             UserId = 1
                         },
                         new
                         {
                             Id = 2,
-                            OrderDate = new DateTime(2023, 6, 24, 15, 35, 35, 629, DateTimeKind.Local).AddTicks(4931),
+                            OrderDate = new DateTime(2023, 6, 25, 19, 49, 19, 955, DateTimeKind.Local).AddTicks(6211),
                             TotalCost = 130000.0,
                             UserId = 1
                         },
                         new
                         {
                             Id = 3,
-                            OrderDate = new DateTime(2023, 6, 25, 15, 35, 35, 629, DateTimeKind.Local).AddTicks(4949),
+                            OrderDate = new DateTime(2023, 6, 26, 19, 49, 19, 955, DateTimeKind.Local).AddTicks(6236),
                             TotalCost = 105000.0,
                             UserId = 2
                         });
@@ -163,7 +163,7 @@ namespace MicroserviceTz.Migrations
                         {
                             Id = 1,
                             Name = "Ноутбук",
-                            Price = 50000.0
+                            Price = 52000.0
                         },
                         new
                         {
@@ -227,13 +227,13 @@ namespace MicroserviceTz.Migrations
                         new
                         {
                             Id = 1,
-                            PasswordHash = "WzTnTi7mAi5n+g3u0aZgPjw2CxAXW7HQdGNU9vgRwqObS7Az6d0SVXnTBaMvuW5TifARaTvyGVuiDIsg3cYZGQ==",
+                            PasswordHash = "pouaGClpnZzjfrgV+vFycNqRkzb/56qZTnn73sAcC5TSsILPWwPuBuLDAY3w99SXU3o/mr6quv7JK5lERMAfHA==",
                             Username = "Пользователь1"
                         },
                         new
                         {
                             Id = 2,
-                            PasswordHash = "dSvXsqoyu815wjm3/o8xSXYbfxENwzKtnMqLbB2ZNE15+w6XNi5K465DeJecIzuCSUoUtxLd3CnoHZUjNlfadw==",
+                            PasswordHash = "wms55DcB/YEKa3q88/ZO7FFQybMO6nx0lN34HGJ+tzP7KhEc7QtUCBjAopFwwFU2UGYHiTM5HbwRmAIiQ/FJVA==",
                             Username = "Пользователь2"
                         });
                 });

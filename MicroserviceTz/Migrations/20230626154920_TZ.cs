@@ -89,7 +89,7 @@ namespace MicroserviceTz.Migrations
                 columns: new[] { "Id", "Name", "Price" },
                 values: new object[,]
                 {
-                    { 1, "Ноутбук", 50000.0 },
+                    { 1, "Ноутбук", 52000.0 },
                     { 2, "Смартфон", 30000.0 },
                     { 3, "Планшет", 25000.0 },
                     { 4, "Компьютер", 70000.0 },
@@ -103,24 +103,24 @@ namespace MicroserviceTz.Migrations
                 columns: new[] { "Id", "PasswordHash", "Token", "Username" },
                 values: new object[,]
                 {
-                    { 1, "WzTnTi7mAi5n+g3u0aZgPjw2CxAXW7HQdGNU9vgRwqObS7Az6d0SVXnTBaMvuW5TifARaTvyGVuiDIsg3cYZGQ==", null, "Пользователь1" },
-                    { 2, "dSvXsqoyu815wjm3/o8xSXYbfxENwzKtnMqLbB2ZNE15+w6XNi5K465DeJecIzuCSUoUtxLd3CnoHZUjNlfadw==", null, "Пользователь2" }
+                    { 1, "pouaGClpnZzjfrgV+vFycNqRkzb/56qZTnn73sAcC5TSsILPWwPuBuLDAY3w99SXU3o/mr6quv7JK5lERMAfHA==", null, "Пользователь1" },
+                    { 2, "wms55DcB/YEKa3q88/ZO7FFQybMO6nx0lN34HGJ+tzP7KhEc7QtUCBjAopFwwFU2UGYHiTM5HbwRmAIiQ/FJVA==", null, "Пользователь2" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Orders",
                 columns: new[] { "Id", "OrderDate", "TotalCost", "UserId" },
-                values: new object[] { 1, new DateTime(2023, 6, 23, 15, 35, 35, 628, DateTimeKind.Local).AddTicks(2965), 130000.0, 1 });
+                values: new object[] { 1, new DateTime(2023, 6, 24, 19, 49, 19, 954, DateTimeKind.Local).AddTicks(3813), 134000.0, 1 });
 
             migrationBuilder.InsertData(
                 table: "Orders",
                 columns: new[] { "Id", "OrderDate", "TotalCost", "UserId" },
-                values: new object[] { 2, new DateTime(2023, 6, 24, 15, 35, 35, 629, DateTimeKind.Local).AddTicks(4931), 130000.0, 1 });
+                values: new object[] { 2, new DateTime(2023, 6, 25, 19, 49, 19, 955, DateTimeKind.Local).AddTicks(6211), 130000.0, 1 });
 
             migrationBuilder.InsertData(
                 table: "Orders",
                 columns: new[] { "Id", "OrderDate", "TotalCost", "UserId" },
-                values: new object[] { 3, new DateTime(2023, 6, 25, 15, 35, 35, 629, DateTimeKind.Local).AddTicks(4949), 105000.0, 2 });
+                values: new object[] { 3, new DateTime(2023, 6, 26, 19, 49, 19, 955, DateTimeKind.Local).AddTicks(6236), 105000.0, 2 });
 
             migrationBuilder.InsertData(
                 table: "OrderItem",
