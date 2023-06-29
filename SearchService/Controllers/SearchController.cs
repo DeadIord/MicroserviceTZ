@@ -1,9 +1,6 @@
 ﻿using SearchService.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using static System.Net.Mime.MediaTypeNames;
-using ProductsService.Models;
-using UserService.Models;
+using System.Threading.Tasks;
 
 namespace SearchService.Controllers
 {
@@ -21,9 +18,9 @@ namespace SearchService.Controllers
         }
 
         [HttpGet("search")]
-        public IActionResult Search(string text)
+        public async Task<IActionResult>SearchAsynch(string text)
         {
-            var searchResults = _searchService.Search(text);
+            var searchResults = await _searchService.SearchAsync(text);
             if (searchResults.Count == 0)
                 return BadRequest(new { message = "Пользователи или товары не найдены" });
             return Ok(searchResults);

@@ -1,7 +1,8 @@
-﻿using ProductsService.Models;
+﻿using ProductService.Models;
 using SearchService.Data;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UserService.Models;
 
 namespace SearchService.Models
@@ -17,13 +18,13 @@ namespace SearchService.Models
             _productServices = productServices;
         }
 
-        public List<object> Search(string text)
+        public async  Task<List<object>> SearchAsync(string text)
         {
-            var users = _userServices.GetAllUser()
-                .Where(u => u.Username.ToLower().Contains(text))
-                .ToList();
+            var users = (await _userServices.GetAllUserAsync())
+                 .Where(u => u.Username.ToLower().Contains(text))
+                 .ToList();
 
-            var products = _productServices.GetAllProducts()
+            var products = (await _productServices.GetAllProductsAsync())
                 .Where(p => p.Name.ToLower().Contains(text))
                 .ToList();
 

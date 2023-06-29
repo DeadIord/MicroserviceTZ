@@ -6,8 +6,9 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using UserService.ViewModel;
-using ProductsService.Models;
-using ProductsService.Data;
+using ProductService.Models;
+using ProductService.Data;
+using System.Threading.Tasks;
 
 namespace UserService.Models
 {
@@ -23,9 +24,9 @@ namespace UserService.Models
             _productDbContext = productDbContext;
             _dbContext = dbContext;
         }
-        public User Authenticate(string username, string password)
+        public async Task<User> AuthenticateAsync(string username, string password)
         {
-            var user = _dbContext.Users.SingleOrDefault(x => x.Username == username);
+            var user = await _dbContext.Users.SingleOrDefaultAsync(x => x.Username == username);
 
             if (user == null || VerifyPasswordHash(password, user.PasswordHash))
                 return null;
@@ -36,28 +37,20 @@ namespace UserService.Models
 
             return user;
         }
-
-
-        public IEnumerable<User> GetAllUser()
+        public async Task<List<User>> GetAllUserAsync()
         {
-            return _dbContext.Users.ToList();
+            return await _dbContext.Users.ToListAsync();
         }
-
-
-        public OrderDetailsVM GetOrderDetails(int orderId, int userId)
+        public async Task<OrderDetailsVM> GetOrderDetailsAsync(int orderId, int userId)
         {
-            var order = _dbContext.Orders
-                .Where(i => i.UserId == userId)
-                .FirstOrDefault(o => o.Id == orderId)
-               ;
-
+            var order = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == orderId && o.UserId == userId);
             if (order == null)
                 return null;
 
-            var orderItems = _productDbContext.OrderItem
+            var orderItems = await _productDbContext.OrderItem
                 .Where(oi => oi.OrdersId == orderId)
                 .Include(oi => oi.Product)
-                .ToList();
+                .ToListAsync();
 
             var orderDetails = new OrderDetailsVM
             {
@@ -73,31 +66,25 @@ namespace UserService.Models
 
             return orderDetails;
         }
-
-
-
-        public List<OrderHistoryItemVM> GetOrderHistoryForUser(int userId)
+        public async Task<List<OrderHistoryItemVM>> GetOrderHistoryForUserAsync(int userId)
         {
-            var orders = _dbContext.Orders.Where(o => o.UserId == userId).ToList();
-
-            var orderHistory = orders.Select(o => new OrderHistoryItemVM
-            {
-                OrderId = o.Id,
-                OrderDate = o.OrderDate,
-                TotalCost = o.TotalCost,
-                TotalQuantity = GetTotalQuantityForOrder(o.Id)
-            }).ToList();
+            var orderHistory =await  _dbContext.Orders
+                .Where(o => o.UserId == userId)
+                .Select(o => new OrderHistoryItemVM
+                {
+                    OrderId = o.Id,
+                    OrderDate = o.OrderDate,
+                    TotalCost = o.TotalCost,
+                    TotalQuantity = GetTotalQuantityForOrder(o.Id)
+                })
+                .ToListAsync();
 
             return orderHistory;
         }
-
         private int GetTotalQuantityForOrder(int orderId)
         {
-            var orderItems = _productDbContext.OrderItem.Where(oi => oi.OrdersId == orderId).ToList();
-            return orderItems.Sum(oi => oi.Quantity);
+                return _productDbContext.OrderItem.Where(oi => oi.OrdersId == orderId).Sum(oi => oi.Quantity);
         }
-
-
         private bool VerifyPasswordHash(string password, string storedHash)
         {
             byte[] storedHashBytes = Convert.FromBase64String(storedHash);
@@ -111,12 +98,9 @@ namespace UserService.Models
                     if (computedHash[i] != storedHashBytes[i])
                         return false;
                 }
-
                 return true;
             }
         }
-
-
         private string GenerateToken()
         {
             using (var rngCryptoServiceProvider = new RNGCryptoServiceProvider())
@@ -128,8 +112,6 @@ namespace UserService.Models
                 return Convert.ToBase64String(tokenData);
             }
         }
-
-
         public User Create(User user)
         {
             _dbContext.Users.Add(user);
@@ -137,12 +119,6 @@ namespace UserService.Models
 
             return user;
         }
-
-
-
-
-
-
         public User GetById(int userId)
         {
             return _dbContext.Users.Find(userId);
@@ -155,15 +131,12 @@ namespace UserService.Models
             if (user == null)
                 return null;
 
-
-
             user.Username = updatedUser.Username;
             user.PasswordHash = updatedUser.PasswordHash;
             _dbContext.SaveChanges();
 
             return user;
         }
-
         public User Delete(int userId)
         {
             var user = _dbContext.Users.Find(userId);
@@ -176,10 +149,5 @@ namespace UserService.Models
 
             return user;
         }
-
-
-
-
-
     }
 }

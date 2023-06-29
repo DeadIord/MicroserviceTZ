@@ -1,19 +1,14 @@
-using UserService.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using UserService.Models;
-using ProductService.Models;
 using ProductService.Data;
+using ProductService.Models;
 
-namespace UserService
+namespace ProductService
 {
     public class Startup
     {
@@ -31,28 +26,12 @@ namespace UserService
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "UserService", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProductsService", Version = "v1" });
             });
-            services.AddDbContext<AddDbContext>(options =>
-           options.UseSqlServer(Configuration.GetConnectionString("UserConnection")));
             services.AddDbContext<AddProductDbContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("ProductConnection"));
-            });
-            services.AddScoped<UserServices>();
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<ProductServices>();
-          //  services.AddScoped<SearchServices>();
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-          .AddJwtBearer(options =>
-          {
-              options.TokenValidationParameters = new TokenValidationParameters
-              {
-                  ValidateIssuerSigningKey = true,
-                  IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["Jwt:SecretKey"])),
-                  ValidateIssuer = false,
-                  ValidateAudience = false
-              };
-          });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,22 +41,19 @@ namespace UserService
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "UserService v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProductsService v1"));
             }
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-            app.UseSwagger();
-
         }
     }
 }

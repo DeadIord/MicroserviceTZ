@@ -10,10 +10,10 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using UserService.Models;
-using ProductsService.Models;
+using ProductService.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using ProductsService.Data;
+using ProductService.Data;
 using UserService.Data;
 namespace SearchService
 {

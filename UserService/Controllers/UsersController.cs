@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using UserService.Data;
 using UserService.Models;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace UserService.Controllers
 {
@@ -26,13 +27,13 @@ namespace UserService.Controllers
         }
 
         [HttpPost("authenticate")]
-         
-        public IActionResult Authenticate([FromBody] Authentication model, string username, string password)
+
+        public async Task<IActionResult> AuthenticateAsync([FromBody] Authentication model, string username, string password)
 
         {
             model.Username = username;
             model.Password = password;
-            var response = _userService.Authenticate(model.Username, model.Password);
+            var response = await _userService.AuthenticateAsync(model.Username, model.Password);
 
             if (response == null)
                 return BadRequest(new { message = "Неверные учетные данные" });
@@ -40,9 +41,9 @@ namespace UserService.Controllers
             return Ok(response);
         }
         [HttpGet]
-        public IActionResult GetAllUser()
+        public async Task<IActionResult> GetAllUser()
         {
-            var products = _userService.GetAllUser();
+            var products = await _userService.GetAllUserAsync();
 
             if (products == null)
                 return NotFound();
@@ -50,45 +51,40 @@ namespace UserService.Controllers
             return Ok(products);
         }
 
-
         [HttpGet("{userId}/ordersHistory")]
-        public IActionResult GetOrderHistory(int userId)
+        public async Task<IActionResult> GetOrderHistoryAsync(int userId)
         {
-            var orderHistory = _userService.GetOrderHistoryForUser(userId);
-            if (orderHistory == null)
+            var orderHistory = await _userService.GetOrderHistoryForUserAsync(userId);
+            if (orderHistory.Count == 0)
                 return BadRequest(new { message = "Данные отсутствуют" });
             return Ok(orderHistory);
         }
-
 
         [HttpGet("{userId}/ordersDetails")]
-        public IActionResult GetOrderDetails(int orderId,int userId)
+        public async Task<IActionResult> GetOrderDetailsAsync(int orderId, int userId)
         {
-            var orderHistory = _userService.GetOrderDetails(orderId, userId);
-            if (orderHistory == null)
+            var orderDetails = await _userService.GetOrderDetailsAsync(orderId, userId);
+            if (orderDetails == null)
                 return BadRequest(new { message = "Данные отсутствуют" });
-            return Ok(orderHistory);
+            return Ok(orderDetails);
         }
 
-
         [HttpPost]
-
-        public IActionResult Create(User user, string username, string password)
+        public async Task<IActionResult> CreateAsync(string username, string password)
         {
             if (_dbContext.Users.Any(x => x.Username == username))
             {
                 return BadRequest(new { message = "Пользователь с таким логином уже существует" });
             }
             string passwordHash = HashPassword(password);
-            user.PasswordHash = passwordHash;
-            user.Username = username;
-            user.Token = null;
+            var user = new User() { Username = username, PasswordHash = passwordHash };
             var createdUser = _userService.Create(user);
             if (createdUser == null)
                 return BadRequest(new { message = "Некорректны данные" });
 
             return CreatedAtAction(nameof(GetUser), new { userId = createdUser.Id }, createdUser);
         }
+
 
 
         private string HashPassword(string password)
@@ -100,11 +96,6 @@ namespace UserService.Controllers
                 return Convert.ToBase64String(hashedBytes);
             }
         }
-
-
-
-
-
 
 
         [HttpGet("{userId}")]
@@ -121,15 +112,14 @@ namespace UserService.Controllers
      
         [HttpPut("{userId}")]
      
-        public IActionResult UpdateUser(int userId, string username, string password, User updatedUser)
+        public IActionResult UpdateUser(int userId, string username, string password)
         {
             if (_dbContext.Users.Any(x => x.Username == username))
             {
                 return BadRequest(new { message = "Пользователь с таким логином уже существует" });
             }
             string passwordHash = HashPassword(password);
-            updatedUser.PasswordHash = passwordHash;
-            updatedUser.Username = username;
+           var updatedUser = new User() { Username = username, PasswordHash = passwordHash };
             var user = _userService.Update(userId, updatedUser);
 
             if (user == null)
