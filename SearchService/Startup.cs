@@ -47,6 +47,7 @@ namespace SearchService
                     cfg.ConfigureEndpoints(context);
                 });
 
+
             });
 
             services.AddScoped<SearchServices>();
