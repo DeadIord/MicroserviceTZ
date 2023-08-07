@@ -1,0 +1,22 @@
+2023-08-08 00:41:48.676 +04:00 [INF] User profile is available. Using 'C:\Users\aliga.DESKTOP-KFGEO6Q\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-08-08 00:41:51.050 +04:00 [INF] Bus started: "rabbitmq://localhost/"
+2023-08-08 00:41:51.339 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-08-08 00:41:51.339 +04:00 [INF] Hosting environment: Development
+2023-08-08 00:41:51.339 +04:00 [INF] Content root path: D:\Учеба\ASP\tz\SearchService
+2023-08-08 00:41:51.444 +04:00 [INF] Request starting HTTP/2 GET https://localhost:44327/swagger/index.html - -
+2023-08-08 00:41:52.024 +04:00 [INF] Request finished HTTP/2 GET https://localhost:44327/swagger/index.html - - - 200 - text/html;charset=utf-8 582.8919ms
+2023-08-08 00:41:53.046 +04:00 [INF] Request starting HTTP/2 GET https://localhost:44327/_vs/browserLink - -
+2023-08-08 00:41:53.046 +04:00 [INF] Request starting HTTP/2 GET https://localhost:44327/_framework/aspnetcore-browser-refresh.js - -
+2023-08-08 00:41:53.085 +04:00 [INF] Request finished HTTP/2 GET https://localhost:44327/_framework/aspnetcore-browser-refresh.js - - - 200 11995 application/javascript;+charset=utf-8 25.6513ms
+2023-08-08 00:41:53.140 +04:00 [INF] Request finished HTTP/2 GET https://localhost:44327/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 94.1592ms
+2023-08-08 00:41:53.357 +04:00 [INF] Request starting HTTP/1.1 GET https://localhost:44327/swagger/swagger-ui-bundle.js.map - -
+2023-08-08 00:41:53.367 +04:00 [INF] Request starting HTTP/1.1 GET https://localhost:44327/swagger/swagger-ui-standalone-preset.js.map - -
+2023-08-08 00:41:53.450 +04:00 [INF] Request starting HTTP/2 GET https://localhost:44327/swagger/v1/swagger.json - -
+2023-08-08 00:41:54.240 +04:00 [INF] Request finished HTTP/2 GET https://localhost:44327/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 789.6468ms
+2023-08-08 00:41:54.585 +04:00 [INF] Request finished HTTP/1.1 GET https://localhost:44327/swagger/swagger-ui-standalone-preset.js.map - - - 404 - - 1218.2535ms
+2023-08-08 00:41:54.585 +04:00 [INF] Request finished HTTP/1.1 GET https://localhost:44327/swagger/swagger-ui-bundle.js.map - - - 404 - - 1228.5289ms
+2023-08-08 00:42:20.661 +04:00 [INF] Request starting HTTP/2 POST https://localhost:44327/search?text=sas - 0
+2023-08-08 00:42:20.676 +04:00 [INF] Executing endpoint 'SearchService.Controllers.SearchController.SearchAsync (SearchService)'
+2023-08-08 00:42:20.767 +04:00 [INF] Route matched with {action = "Search", controller = "Search"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SearchAsync(System.String) on controller SearchService.Controllers.SearchController (SearchService).
+2023-08-08 00:42:20.838 +04:00 [INF] Получен запрос на поиск
+2023-08-08 00:42:20.840 +04:00 [INF] Отправка запроса на поиск

@@ -1,20 +1,20 @@
-
-using SearchService.Models;
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using RabbitMQ.Client;
+using Serilog;
+using System;
 using System.Text;
-using UserService.Models;
-using ProductService.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using ProductService.Data;
-using UserService.Data;
+using SearchService.Rabbit;
+using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+
+
 namespace SearchService
 {
     public class Startup
@@ -23,29 +23,33 @@ namespace SearchService
         {
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MicroserviceTz", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "SearchService", Version = "v1" });
             });
-            services.AddDbContext<AddDbContext>(options =>
-           options.UseSqlServer(Configuration.GetConnectionString("UserConnection")));
-            services.AddDbContext<AddProductDbContext>(options =>
+            services.AddMassTransit(x =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("ProductConnection"));
+
+                x.UsingRabbitMq((context, cfg) =>
+                {
+
+                    var rabbitMqConfig = Configuration.GetSection("RabbitMQ");
+                    cfg.Host(rabbitMqConfig["Hostname"], h =>
+                    {
+                        h.Username(rabbitMqConfig["Username"]);
+                        h.Password(rabbitMqConfig["Password"]);
+                    });
+
+                    cfg.ConfigureEndpoints(context);
+                });
+
             });
-      
 
             services.AddScoped<SearchServices>();
-            services.AddScoped<ProductServices>();
-            services.AddScoped<UserServices>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
@@ -57,31 +61,32 @@ namespace SearchService
                     ValidateAudience = false
                 };
             });
+            Log.Logger = new LoggerConfiguration()
+            .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
+            .CreateLogger();
+            services.AddLogging(loggingBuilder =>
+            {
+                loggingBuilder.ClearProviders();
+                loggingBuilder.AddSerilog();
+            });
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MicroserviceTz v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SearchService v1"));
             }
-
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
             app.UseSwagger();
-
         }
     }
 }

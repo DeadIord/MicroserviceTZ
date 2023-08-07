@@ -1,5 +1,4 @@
-﻿using ProductService.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace UserService.Models
@@ -10,7 +9,7 @@ namespace UserService.Models
         public int UserId { get; set; }
         public double TotalCost { get; set; }
         public DateTime OrderDate { get; set; }
-        public virtual ICollection<OrderItem> OrderItems { get; set; }
+       // public virtual ICollection<OrderItem> OrderItems { get; set; }
 
         public User User { get; set; }
 

@@ -6,8 +6,6 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using UserService.ViewModel;
-using ProductService.Models;
-using ProductService.Data;
 using System.Threading.Tasks;
 
 namespace UserService.Models
@@ -15,13 +13,12 @@ namespace UserService.Models
     public class UserServices
     {
         private readonly AddDbContext _dbContext;
-        private readonly AddProductDbContext _productDbContext;
+        
 
 
-        public UserServices(AddDbContext dbContext, AddProductDbContext productDbContext)
+        public UserServices(AddDbContext dbContext)
         {
 
-            _productDbContext = productDbContext;
             _dbContext = dbContext;
         }
         public async Task<User> AuthenticateAsync(string username, string password)
@@ -41,50 +38,50 @@ namespace UserService.Models
         {
             return await _dbContext.Users.ToListAsync();
         }
-        public async Task<OrderDetailsVM> GetOrderDetailsAsync(int orderId, int userId)
-        {
-            var order = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == orderId && o.UserId == userId);
-            if (order == null)
-                return null;
+        //public async Task<OrderDetailsVM> GetOrderDetailsAsync(int orderId, int userId)
+        //{
+        //    var order = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == orderId && o.UserId == userId);
+        //    if (order == null)
+        //        return null;
 
-            var orderItems = await _productDbContext.OrderItem
-                .Where(oi => oi.OrdersId == orderId)
-                .Include(oi => oi.Product)
-                .ToListAsync();
+        //    var orderItems = await _productDbContext.OrderItem
+        //        .Where(oi => oi.OrdersId == orderId)
+        //        .Include(oi => oi.Product)
+        //        .ToListAsync();
 
-            var orderDetails = new OrderDetailsVM
-            {
-                OrderId = order.Id,
-                OrderDate = order.OrderDate,
-                TotalCost = order.TotalCost,
-                OrderItems = orderItems.Select(oi => new OrderItemVM
-                {
-                    ProductName = oi.Product.Name,
-                    Quantity = oi.Quantity
-                }).ToList()
-            };
+        //    var orderDetails = new OrderDetailsVM
+        //    {
+        //        OrderId = order.Id,
+        //        OrderDate = order.OrderDate,
+        //        TotalCost = order.TotalCost,
+        //        OrderItems = orderItems.Select(oi => new OrderItemVM
+        //        {
+        //            ProductName = oi.Product.Name,
+        //            Quantity = oi.Quantity
+        //        }).ToList()
+        //    };
 
-            return orderDetails;
-        }
-        public async Task<List<OrderHistoryItemVM>> GetOrderHistoryForUserAsync(int userId)
-        {
-            var orderHistory =await  _dbContext.Orders
-                .Where(o => o.UserId == userId)
-                .Select(o => new OrderHistoryItemVM
-                {
-                    OrderId = o.Id,
-                    OrderDate = o.OrderDate,
-                    TotalCost = o.TotalCost,
-                    TotalQuantity = GetTotalQuantityForOrder(o.Id)
-                })
-                .ToListAsync();
+        //    return orderDetails;
+        //}
+        //public async Task<List<OrderHistoryItemVM>> GetOrderHistoryForUserAsync(int userId)
+        //{
+        //    var orderHistory =await  _dbContext.Orders
+        //        .Where(o => o.UserId == userId)
+        //        .Select(o => new OrderHistoryItemVM
+        //        {
+        //            OrderId = o.Id,
+        //            OrderDate = o.OrderDate,
+        //            TotalCost = o.TotalCost,
+        //            TotalQuantity = GetTotalQuantityForOrder(o.Id)
+        //        })
+        //        .ToListAsync();
 
-            return orderHistory;
-        }
-        private int GetTotalQuantityForOrder(int orderId)
-        {
-                return _productDbContext.OrderItem.Where(oi => oi.OrdersId == orderId).Sum(oi => oi.Quantity);
-        }
+        //    return orderHistory;
+        //}
+        //private int GetTotalQuantityForOrder(int orderId)
+        //{
+        //        return _productDbContext.OrderItem.Where(oi => oi.OrdersId == orderId).Sum(oi => oi.Quantity);
+        //}
         private bool VerifyPasswordHash(string password, string storedHash)
         {
             byte[] storedHashBytes = Convert.FromBase64String(storedHash);
