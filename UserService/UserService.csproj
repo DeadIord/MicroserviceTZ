@@ -31,10 +31,6 @@
     <ProjectReference Include="..\SearchService.Core\SearchService.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
-
 
 
 </Project>

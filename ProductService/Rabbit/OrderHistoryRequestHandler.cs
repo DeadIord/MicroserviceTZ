@@ -1,23 +1,20 @@
 ﻿using MassTransit;
-using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using ProductService.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using OrderService.Core.Commands;
 using ProductService.Data;
-using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ProductService.Rabbit
 {
-
-    public class OrderRequestHandler : IConsumer<RequestForOrderHistory>
+   
+    public class OrderHistoryRequestHandler : IConsumer<RequestForOrderHistory>
     {
-        private readonly ILogger<OrderRequestHandler> _logger;
+        private readonly ILogger<OrderHistoryRequestHandler> _logger;
         private readonly AddProductDbContext _dbContext;
 
-        public OrderRequestHandler(ILogger<OrderRequestHandler> logger, AddProductDbContext dbContext)
+        public OrderHistoryRequestHandler(ILogger<OrderHistoryRequestHandler> logger, AddProductDbContext dbContext)
         {
             _logger = logger;
             _dbContext = dbContext;
@@ -27,7 +24,7 @@ namespace ProductService.Rabbit
         {
             var request = context.Message;
 
-            _logger.LogInformation("Получен запрос на получение информации о продуктах по Id");
+            _logger.LogInformation("Получен запрос на получение информации о продуктах по Ids: {ProductIds}", string.Join(", ", request.ProductIds));
 
             var products = await _dbContext.Products
                 .Where(p => request.ProductIds.Contains(p.Id))
@@ -49,5 +46,10 @@ namespace ProductService.Rabbit
             await context.RespondAsync(response);
         }
     }
-}
+ 
 
+
+
+
+
+}

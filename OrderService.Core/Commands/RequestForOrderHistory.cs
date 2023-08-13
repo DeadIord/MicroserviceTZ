@@ -10,16 +10,6 @@ namespace OrderService.Core.Commands
     {
         public List<int> ProductIds { get; set; }
     }
-    public class GetProductsResponse
-    {
-        public List<ProductsInfo> Products { get; set; }
-    }
-
-    public class ProductsInfo
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public double Price { get; set; }
-    }
+  
 
 }

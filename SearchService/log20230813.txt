@@ -85,3 +85,79 @@
 2023-08-13 17:21:58.444 +04:00 [INF] Request finished HTTP/1.1 GET https://localhost:6001/swagger/swagger-ui-standalone-preset.js.map - - - 404 0 - 0.9807ms
 2023-08-13 17:21:58.568 +04:00 [INF] Request starting HTTP/2 GET https://localhost:6001/swagger/v1/swagger.json - -
 2023-08-13 17:21:58.708 +04:00 [INF] Request finished HTTP/2 GET https://localhost:6001/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 140.3043ms
+2023-08-13 18:29:08.885 +04:00 [INF] User profile is available. Using 'C:\Users\aliga.DESKTOP-KFGEO6Q\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-08-13 18:29:14.433 +04:00 [INF] Bus started: "rabbitmq://localhost/"
+2023-08-13 18:29:15.441 +04:00 [INF] Now listening on: https://localhost:6001
+2023-08-13 18:29:15.441 +04:00 [INF] Now listening on: http://localhost:6000
+2023-08-13 18:29:15.442 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-08-13 18:29:15.442 +04:00 [INF] Hosting environment: Development
+2023-08-13 18:29:15.443 +04:00 [INF] Content root path: D:\Учеба\ASP\tz\SearchService
+2023-08-13 18:29:19.700 +04:00 [INF] Request starting HTTP/2 GET https://localhost:6001/swagger/index.html - -
+2023-08-13 18:29:20.508 +04:00 [INF] Request finished HTTP/2 GET https://localhost:6001/swagger/index.html - - - 200 - text/html;charset=utf-8 811.6901ms
+2023-08-13 18:29:21.764 +04:00 [INF] Request starting HTTP/2 GET https://localhost:6001/_vs/browserLink - -
+2023-08-13 18:29:21.764 +04:00 [INF] Request starting HTTP/2 GET https://localhost:6001/_framework/aspnetcore-browser-refresh.js - -
+2023-08-13 18:29:21.776 +04:00 [INF] Request finished HTTP/2 GET https://localhost:6001/_framework/aspnetcore-browser-refresh.js - - - 200 11996 application/javascript;+charset=utf-8 11.3273ms
+2023-08-13 18:29:21.897 +04:00 [INF] Request finished HTTP/2 GET https://localhost:6001/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 133.2597ms
+2023-08-13 18:29:22.216 +04:00 [INF] Request starting HTTP/1.1 GET https://localhost:6001/swagger/swagger-ui-standalone-preset.js.map - -
+2023-08-13 18:29:22.217 +04:00 [INF] Request starting HTTP/1.1 GET https://localhost:6001/swagger/swagger-ui-bundle.js.map - -
+2023-08-13 18:29:22.226 +04:00 [INF] Request starting HTTP/2 GET https://localhost:6001/swagger/v1/swagger.json - -
+2023-08-13 18:29:22.690 +04:00 [INF] Request finished HTTP/2 GET https://localhost:6001/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 463.5275ms
+2023-08-13 18:29:22.732 +04:00 [INF] Request finished HTTP/1.1 GET https://localhost:6001/swagger/swagger-ui-bundle.js.map - - - 404 0 - 515.6905ms
+2023-08-13 18:29:22.732 +04:00 [INF] Request finished HTTP/1.1 GET https://localhost:6001/swagger/swagger-ui-standalone-preset.js.map - - - 404 0 - 515.4275ms
+2023-08-13 18:45:45.103 +04:00 [INF] User profile is available. Using 'C:\Users\aliga.DESKTOP-KFGEO6Q\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-08-13 18:45:46.510 +04:00 [INF] Bus started: "rabbitmq://localhost/"
+2023-08-13 18:45:46.987 +04:00 [INF] Now listening on: https://localhost:6001
+2023-08-13 18:45:46.987 +04:00 [INF] Now listening on: http://localhost:6000
+2023-08-13 18:45:46.988 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-08-13 18:45:46.988 +04:00 [INF] Hosting environment: Development
+2023-08-13 18:45:46.988 +04:00 [INF] Content root path: D:\Учеба\ASP\tz\SearchService
+2023-08-13 18:45:52.919 +04:00 [INF] Request starting HTTP/2 GET https://localhost:6001/swagger/index.html - -
+2023-08-13 18:45:54.479 +04:00 [INF] Request finished HTTP/2 GET https://localhost:6001/swagger/index.html - - - 200 - text/html;charset=utf-8 1590.4369ms
+2023-08-13 18:45:55.856 +04:00 [INF] Request starting HTTP/2 GET https://localhost:6001/_vs/browserLink - -
+2023-08-13 18:45:55.856 +04:00 [INF] Request starting HTTP/2 GET https://localhost:6001/_framework/aspnetcore-browser-refresh.js - -
+2023-08-13 18:45:55.865 +04:00 [INF] Request finished HTTP/2 GET https://localhost:6001/_framework/aspnetcore-browser-refresh.js - - - 200 11996 application/javascript;+charset=utf-8 7.3511ms
+2023-08-13 18:45:55.928 +04:00 [INF] Request finished HTTP/2 GET https://localhost:6001/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 71.4598ms
+2023-08-13 18:45:56.071 +04:00 [INF] Request starting HTTP/1.1 GET https://localhost:6001/swagger/swagger-ui-bundle.js.map - -
+2023-08-13 18:45:56.071 +04:00 [INF] Request starting HTTP/1.1 GET https://localhost:6001/swagger/swagger-ui-standalone-preset.js.map - -
+2023-08-13 18:45:56.229 +04:00 [INF] Request starting HTTP/2 GET https://localhost:6001/swagger/v1/swagger.json - -
+2023-08-13 18:45:56.496 +04:00 [INF] Request finished HTTP/1.1 GET https://localhost:6001/swagger/swagger-ui-standalone-preset.js.map - - - 404 0 - 424.3938ms
+2023-08-13 18:45:56.496 +04:00 [INF] Request finished HTTP/1.1 GET https://localhost:6001/swagger/swagger-ui-bundle.js.map - - - 404 0 - 424.5272ms
+2023-08-13 18:45:56.654 +04:00 [INF] Request finished HTTP/2 GET https://localhost:6001/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 429.0339ms
+2023-08-13 18:56:47.572 +04:00 [INF] User profile is available. Using 'C:\Users\aliga.DESKTOP-KFGEO6Q\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-08-13 18:56:48.459 +04:00 [INF] Bus started: "rabbitmq://localhost/"
+2023-08-13 18:56:48.737 +04:00 [INF] Now listening on: https://localhost:6001
+2023-08-13 18:56:48.737 +04:00 [INF] Now listening on: http://localhost:6000
+2023-08-13 18:56:48.737 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-08-13 18:56:48.737 +04:00 [INF] Hosting environment: Development
+2023-08-13 18:56:48.737 +04:00 [INF] Content root path: D:\Учеба\ASP\tz\SearchService
+2023-08-13 18:56:53.440 +04:00 [INF] Request starting HTTP/2 GET https://localhost:6001/swagger/index.html - -
+2023-08-13 18:56:55.010 +04:00 [INF] Request finished HTTP/2 GET https://localhost:6001/swagger/index.html - - - 200 - text/html;charset=utf-8 1578.4638ms
+2023-08-13 18:56:57.392 +04:00 [INF] Request starting HTTP/2 GET https://localhost:6001/_framework/aspnetcore-browser-refresh.js - -
+2023-08-13 18:56:57.393 +04:00 [INF] Request starting HTTP/2 GET https://localhost:6001/_vs/browserLink - -
+2023-08-13 18:56:57.413 +04:00 [INF] Request finished HTTP/2 GET https://localhost:6001/_framework/aspnetcore-browser-refresh.js - - - 200 11996 application/javascript;+charset=utf-8 20.4427ms
+2023-08-13 18:56:57.715 +04:00 [INF] Request finished HTTP/2 GET https://localhost:6001/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 322.5967ms
+2023-08-13 18:56:57.799 +04:00 [INF] Request starting HTTP/1.1 GET https://localhost:6001/swagger/swagger-ui-bundle.js.map - -
+2023-08-13 18:56:57.799 +04:00 [INF] Request starting HTTP/1.1 GET https://localhost:6001/swagger/swagger-ui-standalone-preset.js.map - -
+2023-08-13 18:56:57.915 +04:00 [INF] Request starting HTTP/2 GET https://localhost:6001/swagger/v1/swagger.json - -
+2023-08-13 18:56:58.255 +04:00 [INF] Request finished HTTP/1.1 GET https://localhost:6001/swagger/swagger-ui-standalone-preset.js.map - - - 404 0 - 455.8078ms
+2023-08-13 18:56:58.255 +04:00 [INF] Request finished HTTP/1.1 GET https://localhost:6001/swagger/swagger-ui-bundle.js.map - - - 404 0 - 456.5888ms
+2023-08-13 18:56:58.282 +04:00 [INF] Request finished HTTP/2 GET https://localhost:6001/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 366.7312ms
+2023-08-13 19:04:04.005 +04:00 [INF] User profile is available. Using 'C:\Users\aliga.DESKTOP-KFGEO6Q\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-08-13 19:04:04.780 +04:00 [INF] Bus started: "rabbitmq://localhost/"
+2023-08-13 19:04:05.000 +04:00 [INF] Now listening on: https://localhost:6001
+2023-08-13 19:04:05.000 +04:00 [INF] Now listening on: http://localhost:6000
+2023-08-13 19:04:05.000 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-08-13 19:04:05.001 +04:00 [INF] Hosting environment: Development
+2023-08-13 19:04:05.001 +04:00 [INF] Content root path: D:\Учеба\ASP\tz\SearchService
+2023-08-13 19:04:09.901 +04:00 [INF] Request starting HTTP/2 GET https://localhost:6001/swagger/index.html - -
+2023-08-13 19:04:11.697 +04:00 [INF] Request finished HTTP/2 GET https://localhost:6001/swagger/index.html - - - 200 - text/html;charset=utf-8 1803.0561ms
+2023-08-13 19:04:13.058 +04:00 [INF] Request starting HTTP/2 GET https://localhost:6001/_vs/browserLink - -
+2023-08-13 19:04:13.059 +04:00 [INF] Request starting HTTP/2 GET https://localhost:6001/_framework/aspnetcore-browser-refresh.js - -
+2023-08-13 19:04:13.094 +04:00 [INF] Request finished HTTP/2 GET https://localhost:6001/_framework/aspnetcore-browser-refresh.js - - - 200 11996 application/javascript;+charset=utf-8 27.8107ms
+2023-08-13 19:04:13.210 +04:00 [INF] Request finished HTTP/2 GET https://localhost:6001/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 151.1897ms
+2023-08-13 19:04:13.279 +04:00 [INF] Request starting HTTP/1.1 GET https://localhost:6001/swagger/swagger-ui-bundle.js.map - -
+2023-08-13 19:04:13.279 +04:00 [INF] Request starting HTTP/1.1 GET https://localhost:6001/swagger/swagger-ui-standalone-preset.js.map - -
+2023-08-13 19:04:13.398 +04:00 [INF] Request starting HTTP/2 GET https://localhost:6001/swagger/v1/swagger.json - -
+2023-08-13 19:04:13.622 +04:00 [INF] Request finished HTTP/1.1 GET https://localhost:6001/swagger/swagger-ui-bundle.js.map - - - 404 0 - 342.9404ms
+2023-08-13 19:04:13.624 +04:00 [INF] Request finished HTTP/1.1 GET https://localhost:6001/swagger/swagger-ui-standalone-preset.js.map - - - 404 0 - 342.9545ms
+2023-08-13 19:04:13.737 +04:00 [INF] Request finished HTTP/2 GET https://localhost:6001/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 338.5959ms

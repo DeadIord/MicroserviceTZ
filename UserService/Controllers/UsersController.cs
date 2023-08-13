@@ -50,14 +50,14 @@ namespace UserService.Controllers
             return Ok(products);
         }
 
-        //[HttpGet("{userId}/ordersHistory")]
-        //public async Task<IActionResult> GetOrderHistoryAsync(int userId)
-        //{
-        //    var orderHistory = await _userService.GetOrderHistoryForUserAsync(userId);
-        //    if (orderHistory.Count == 0)
-        //        return BadRequest(new { message = "Данные отсутствуют" });
-        //    return Ok(orderHistory);
-        //}
+        [HttpGet("{userId}/ordersHistory")]
+        public async Task<IActionResult> GetOrderHistoryAsync(int userId)
+        {
+            var orderHistory = await _userService.GetOrderHistoryForUserAsync(userId);
+            if (orderHistory.Count == 0)
+                return BadRequest(new { message = "Данные отсутствуют" });
+            return Ok(orderHistory);
+        }
 
         [HttpGet("{userId}/ordersDetails")]
         public async Task<IActionResult> GetOrderDetailsAsync(int orderId, int userId)

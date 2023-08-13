@@ -80,7 +80,9 @@ namespace UserService.Models
                 OrderItems = order.OrderItems.Select(oi => new OrderItemVM
                 {
                     ProductName = productsInfo.FirstOrDefault(p => p.Id == oi.ProductId)?.Name,
-                    Quantity = oi.Quantity
+                    Quantity = oi.Quantity,
+                    Price = productsInfo.FirstOrDefault(p => p.Id == oi.ProductId).Price * oi.Quantity
+
                 }).ToList()
             };
 
@@ -90,25 +92,25 @@ namespace UserService.Models
         }
 
 
-        //public async Task<List<OrderHistoryItemVM>> GetOrderHistoryForUserAsync(int userId)
-        //{
-        //    var orderHistory =await  _dbContext.Orders
-        //        .Where(o => o.UserId == userId)
-        //        .Select(o => new OrderHistoryItemVM
-        //        {
-        //            OrderId = o.Id,
-        //            OrderDate = o.OrderDate,
-        //            TotalCost = o.TotalCost,
-        //            TotalQuantity = GetTotalQuantityForOrder(o.Id)
-        //        })
-        //        .ToListAsync();
+        public async Task<List<OrderHistoryItemVM>> GetOrderHistoryForUserAsync(int userId)
+        {
+            var orderHistory = await _dbContext.Orders
+                .Where(o => o.UserId == userId)
+                .Select(o => new OrderHistoryItemVM
+                {
+                    OrderId = o.Id,
+                    OrderDate = o.OrderDate,
+                    TotalCost = o.TotalCost,
+                    TotalQuantity = o.OrderItems.Sum(oi => oi.Quantity) // Calculate total quantity from order items
+                })
+                .ToListAsync();
 
-        //    return orderHistory;
-        //}
-        //private int GetTotalQuantityForOrder(int orderId)
-        //{
-        //        return _productDbContext.OrderItem.Where(oi => oi.OrdersId == orderId).Sum(oi => oi.Quantity);
-        //}
+            return orderHistory;
+        }
+
+
+
+
         private bool VerifyPasswordHash(string password, string storedHash)
         {
             byte[] storedHashBytes = Convert.FromBase64String(storedHash);
