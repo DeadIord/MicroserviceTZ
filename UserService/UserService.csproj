@@ -26,6 +26,15 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OrderService.Core\OrderService.Core.csproj" />
+    <ProjectReference Include="..\SearchService.Core\SearchService.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModel\" />
+  </ItemGroup>
+
 
 
 </Project>

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MicroserviceTz.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Cryptography;
 using System.Text;
@@ -60,14 +59,14 @@ namespace UserService.Controllers
         //    return Ok(orderHistory);
         //}
 
-        //[HttpGet("{userId}/ordersDetails")]
-        //public async Task<IActionResult> GetOrderDetailsAsync(int orderId, int userId)
-        //{
-        //    var orderDetails = await _userService.GetOrderDetailsAsync(orderId, userId);
-        //    if (orderDetails == null)
-        //        return BadRequest(new { message = "Данные отсутствуют" });
-        //    return Ok(orderDetails);
-        //}
+        [HttpGet("{userId}/ordersDetails")]
+        public async Task<IActionResult> GetOrderDetailsAsync(int orderId, int userId)
+        {
+            var orderDetails = await _userService.GetOrderDetailsAsync(orderId, userId);
+            if (orderDetails == null)
+                return BadRequest(new { message = "Данные отсутствуют" });
+            return Ok(orderDetails);
+        }
 
         [HttpPost]
         public async Task<IActionResult> CreateAsync(string username, string password)

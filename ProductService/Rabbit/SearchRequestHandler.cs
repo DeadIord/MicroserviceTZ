@@ -1,22 +1,23 @@
 ﻿using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using SearchService.Core.Commands;
+using ProductService.Data;
+using OrderService.Core.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using UserService.Data;
+using SearchService.Core.Commands;
 
-namespace UserService.Rabbit
+namespace ProductService.Rabbit
 {
 
     public class SearchRequestHandler : IConsumer<SearchRequest>
     {
-        private readonly AddDbContext _dbContext;
+        private readonly AddProductDbContext _dbContext;
         private readonly ILogger<SearchRequestHandler> _logger;
 
-        public SearchRequestHandler(AddDbContext dbContext, ILogger<SearchRequestHandler> logger)
+        public SearchRequestHandler(AddProductDbContext dbContext, ILogger<SearchRequestHandler> logger)
         {
             _dbContext = dbContext;
             _logger = logger;
@@ -39,9 +40,9 @@ namespace UserService.Rabbit
 
         private async Task<List<object>> PerformSearch(string searchText)
         {
-            var users = await _dbContext.Users
-                .Where(p => EF.Functions.Like(p.Username, $"%{searchText}%"))
-                .Select(p => new { p.Username })
+            var users = await _dbContext.Products
+                .Where(p => EF.Functions.Like(p.Name, $"%{searchText}%"))
+                .Select(p => new { p.Name })
                 .ToListAsync();
 
             var results = users.Cast<object>().ToList();

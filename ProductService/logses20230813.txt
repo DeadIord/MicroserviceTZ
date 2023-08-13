@@ -1,0 +1,82 @@
+2023-08-13 17:08:45.398 +04:00 [INF] Configured endpoint SearchConsumerQueue, Consumer: ProductService.Rabbit.SearchRequestHandler
+2023-08-13 17:08:45.519 +04:00 [INF] Configured endpoint ListProductsOrderConsumer, Consumer: ProductService.Rabbit.OrderRequestHandler
+2023-08-13 17:08:46.753 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-08-13 17:08:46.753 +04:00 [INF] Hosting environment: Development
+2023-08-13 17:08:46.753 +04:00 [INF] Content root path: D:\Учеба\ASP\tz\ProductService
+2023-08-13 17:08:46.852 +04:00 [INF] Request starting HTTP/2 GET https://localhost:44390/swagger/index.html - -
+2023-08-13 17:08:47.096 +04:00 [INF] Bus started: "rabbitmq://localhost/"
+2023-08-13 17:08:47.745 +04:00 [INF] Request finished HTTP/2 GET https://localhost:44390/swagger/index.html - - - 200 - text/html;charset=utf-8 909.7151ms
+2023-08-13 17:08:48.938 +04:00 [INF] Request starting HTTP/2 GET https://localhost:44390/_framework/aspnetcore-browser-refresh.js - -
+2023-08-13 17:08:48.939 +04:00 [INF] Request starting HTTP/2 GET https://localhost:44390/_vs/browserLink - -
+2023-08-13 17:08:48.953 +04:00 [INF] Request finished HTTP/2 GET https://localhost:44390/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 11.3006ms
+2023-08-13 17:08:49.029 +04:00 [INF] Request finished HTTP/2 GET https://localhost:44390/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 90.1266ms
+2023-08-13 17:08:49.111 +04:00 [INF] Request starting HTTP/1.1 GET https://localhost:44390/swagger/swagger-ui-bundle.js.map - -
+2023-08-13 17:08:49.122 +04:00 [INF] Request starting HTTP/1.1 GET https://localhost:44390/swagger/swagger-ui-standalone-preset.js.map - -
+2023-08-13 17:08:49.221 +04:00 [INF] Request finished HTTP/1.1 GET https://localhost:44390/swagger/swagger-ui-standalone-preset.js.map - - - 404 - - 99.0154ms
+2023-08-13 17:08:49.221 +04:00 [INF] Request finished HTTP/1.1 GET https://localhost:44390/swagger/swagger-ui-bundle.js.map - - - 404 - - 110.1525ms
+2023-08-13 17:08:49.233 +04:00 [INF] Request starting HTTP/2 GET https://localhost:44390/swagger/v1/swagger.json - -
+2023-08-13 17:08:49.440 +04:00 [INF] Request finished HTTP/2 GET https://localhost:44390/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 207.2218ms
+2023-08-13 17:08:54.116 +04:00 [INF] Получен запрос на получение информации о продуктах по Ids: 
+2023-08-13 17:08:54.779 +04:00 [INF] Entity Framework Core 5.0.17 initialized 'AddProductDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2023-08-13 17:08:55.689 +04:00 [INF] Executed DbCommand (45ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Price]
+FROM [Products] AS [p]
+WHERE 0 = 1
+2023-08-13 17:08:55.720 +04:00 [INF] Отправка ответа с информацией о продуктах
+2023-08-13 17:12:16.823 +04:00 [INF] Configured endpoint SearchConsumerQueue, Consumer: ProductService.Rabbit.SearchRequestHandler
+2023-08-13 17:12:16.896 +04:00 [INF] Configured endpoint ListProductsOrderConsumer, Consumer: ProductService.Rabbit.OrderRequestHandler
+2023-08-13 17:12:18.007 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-08-13 17:12:18.007 +04:00 [INF] Hosting environment: Development
+2023-08-13 17:12:18.007 +04:00 [INF] Content root path: D:\Учеба\ASP\tz\ProductService
+2023-08-13 17:12:18.103 +04:00 [INF] Request starting HTTP/2 GET https://localhost:44390/swagger/index.html - -
+2023-08-13 17:12:18.211 +04:00 [INF] Bus started: "rabbitmq://localhost/"
+2023-08-13 17:12:19.765 +04:00 [INF] Request finished HTTP/2 GET https://localhost:44390/swagger/index.html - - - 200 - text/html;charset=utf-8 1665.4268ms
+2023-08-13 17:12:22.167 +04:00 [INF] Request starting HTTP/2 GET https://localhost:44390/_framework/aspnetcore-browser-refresh.js - -
+2023-08-13 17:12:22.167 +04:00 [INF] Request starting HTTP/2 GET https://localhost:44390/_vs/browserLink - -
+2023-08-13 17:12:22.220 +04:00 [INF] Request finished HTTP/2 GET https://localhost:44390/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 40.8727ms
+2023-08-13 17:12:22.296 +04:00 [INF] Request finished HTTP/2 GET https://localhost:44390/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 129.0778ms
+2023-08-13 17:12:22.397 +04:00 [INF] Request starting HTTP/1.1 GET https://localhost:44390/swagger/swagger-ui-bundle.js.map - -
+2023-08-13 17:12:22.471 +04:00 [INF] Request finished HTTP/1.1 GET https://localhost:44390/swagger/swagger-ui-bundle.js.map - - - 404 - - 73.6830ms
+2023-08-13 17:12:33.469 +04:00 [INF] Request starting HTTP/1.1 GET https://localhost:44390/swagger/swagger-ui-standalone-preset.js.map - -
+2023-08-13 17:12:33.472 +04:00 [INF] Request finished HTTP/1.1 GET https://localhost:44390/swagger/swagger-ui-standalone-preset.js.map - - - 404 - - 2.4269ms
+2023-08-13 17:12:33.632 +04:00 [INF] Request starting HTTP/2 GET https://localhost:44390/swagger/v1/swagger.json - -
+2023-08-13 17:12:33.857 +04:00 [INF] Request finished HTTP/2 GET https://localhost:44390/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 225.1210ms
+2023-08-13 17:15:37.547 +04:00 [INF] Получен запрос на получение информации о продуктах по Ids: 
+2023-08-13 17:15:56.514 +04:00 [INF] Entity Framework Core 5.0.17 initialized 'AddProductDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2023-08-13 17:15:57.866 +04:00 [INF] Executed DbCommand (70ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Price]
+FROM [Products] AS [p]
+WHERE 0 = 1
+2023-08-13 17:15:57.904 +04:00 [INF] Отправка ответа с информацией о продуктах
+2023-08-13 17:16:02.036 +04:00 [INF] Получен запрос на получение информации о продуктах по Ids: 
+2023-08-13 17:16:02.084 +04:00 [INF] Entity Framework Core 5.0.17 initialized 'AddProductDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2023-08-13 17:16:02.099 +04:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Price]
+FROM [Products] AS [p]
+WHERE 0 = 1
+2023-08-13 17:16:02.099 +04:00 [INF] Отправка ответа с информацией о продуктах
+2023-08-13 17:21:46.520 +04:00 [INF] Configured endpoint SearchConsumerQueue, Consumer: ProductService.Rabbit.SearchRequestHandler
+2023-08-13 17:21:46.690 +04:00 [INF] Configured endpoint ListProductsOrderConsumer, Consumer: ProductService.Rabbit.OrderRequestHandler
+2023-08-13 17:21:48.346 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-08-13 17:21:48.346 +04:00 [INF] Hosting environment: Development
+2023-08-13 17:21:48.346 +04:00 [INF] Content root path: D:\Учеба\ASP\tz\ProductService
+2023-08-13 17:21:48.467 +04:00 [INF] Request starting HTTP/2 GET https://localhost:44390/swagger/index.html - -
+2023-08-13 17:21:48.643 +04:00 [INF] Bus started: "rabbitmq://localhost/"
+2023-08-13 17:21:49.588 +04:00 [INF] Request finished HTTP/2 GET https://localhost:44390/swagger/index.html - - - 200 - text/html;charset=utf-8 1128.2875ms
+2023-08-13 17:21:50.315 +04:00 [INF] Request starting HTTP/2 GET https://localhost:44390/_framework/aspnetcore-browser-refresh.js - -
+2023-08-13 17:21:50.316 +04:00 [INF] Request starting HTTP/2 GET https://localhost:44390/_vs/browserLink - -
+2023-08-13 17:21:50.332 +04:00 [INF] Request finished HTTP/2 GET https://localhost:44390/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 10.6180ms
+2023-08-13 17:21:50.424 +04:00 [INF] Request finished HTTP/2 GET https://localhost:44390/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 107.5682ms
+2023-08-13 17:21:50.614 +04:00 [INF] Request starting HTTP/1.1 GET https://localhost:44390/swagger/swagger-ui-bundle.js.map - -
+2023-08-13 17:21:50.669 +04:00 [INF] Request finished HTTP/1.1 GET https://localhost:44390/swagger/swagger-ui-bundle.js.map - - - 404 - - 54.5865ms
+2023-08-13 17:22:01.648 +04:00 [INF] Request starting HTTP/1.1 GET https://localhost:44390/swagger/swagger-ui-standalone-preset.js.map - -
+2023-08-13 17:22:01.650 +04:00 [INF] Request finished HTTP/1.1 GET https://localhost:44390/swagger/swagger-ui-standalone-preset.js.map - - - 404 - - 2.4754ms
+2023-08-13 17:22:01.866 +04:00 [INF] Request starting HTTP/2 GET https://localhost:44390/swagger/v1/swagger.json - -
+2023-08-13 17:22:02.105 +04:00 [INF] Request finished HTTP/2 GET https://localhost:44390/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 238.6380ms
+2023-08-13 17:22:24.333 +04:00 [INF] Получен запрос на получение информации о продуктах по Ids: 3, 6, 7
+2023-08-13 17:22:25.160 +04:00 [INF] Entity Framework Core 5.0.17 initialized 'AddProductDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2023-08-13 17:22:26.222 +04:00 [INF] Executed DbCommand (52ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Price]
+FROM [Products] AS [p]
+WHERE [p].[Id] IN (3, 6, 7)
+2023-08-13 17:22:26.264 +04:00 [INF] Отправка ответа с информацией о продуктах

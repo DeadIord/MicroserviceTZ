@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SearchService;
+using OrderService;
 using System;
 using System.Threading.Tasks;
 
-namespace SearchService.Controllers
+namespace OrderService.Controllers
 {
     public class SearchController : ControllerBase
     {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ProductService.Models;
 using System.Threading.Tasks;
+using ProductService.Data;
 
 namespace ProductService.Controllers
 {

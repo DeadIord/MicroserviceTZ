@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SearchService.Rabbit
+namespace SearchService.Core.Commands
 {
     public class SearchRequest
     {

@@ -1,12 +1,17 @@
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using ProductService.Data;
 using ProductService.Models;
+using ProductService.Rabbit;
+using Serilog;
+using System;
 
 namespace ProductService
 {
@@ -31,6 +36,42 @@ namespace ProductService
             services.AddDbContext<AddProductDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<ProductServices>();
+            services.AddMassTransit(config =>
+            {
+                config.AddConsumer<OrderRequestHandler>();
+                config.AddConsumer<SearchRequestHandler>();
+                config.UsingRabbitMq((context, cfg) =>
+                {
+                    var rabbitMqConfig = Configuration.GetSection("RabbitMQ");
+
+                    cfg.ReceiveEndpoint("SearchConsumerQueue", x =>
+                    {
+                        x.ConfigureConsumer<SearchRequestHandler>(context);
+                        x.ConfigureConsumeTopology = false;
+                        x.Bind("SearchConsumerExchange");
+                    });
+                    cfg.ReceiveEndpoint("ListProductsOrderConsumer", x =>
+                    {
+                        x.ConfigureConsumer<OrderRequestHandler>(context);
+                        x.ConfigureConsumeTopology = false;
+                        x.Bind("ListProductsOrderConsumerExchange");
+                    });
+                    cfg.Host(new Uri(rabbitMqConfig["Hostname"]), h =>
+                    {
+                        h.Username(rabbitMqConfig["Username"]);
+                        h.Password(rabbitMqConfig["Password"]);
+                    });
+                });
+
+            });
+            Log.Logger = new LoggerConfiguration()
+          .WriteTo.File("logses.txt", rollingInterval: RollingInterval.Day)
+          .CreateLogger();
+            services.AddLogging(loggingBuilder =>
+            {
+                loggingBuilder.ClearProviders();
+                loggingBuilder.AddSerilog();
+            });
 
         }
 

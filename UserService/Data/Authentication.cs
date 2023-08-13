@@ -1,4 +1,4 @@
-﻿namespace MicroserviceTz.Models
+﻿namespace UserService.Data
 {
     public class Authentication
     {

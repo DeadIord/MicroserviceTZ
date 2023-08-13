@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Reflection.Emit;
 using System.Security.Cryptography;
-using ProductService.Models;
 
 namespace ProductService.Data
 {
@@ -16,7 +15,6 @@ namespace ProductService.Data
         {
         }
         public DbSet<Product> Products { get; set; }
-        public DbSet<OrderItem> OrderItem { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -38,18 +36,7 @@ namespace ProductService.Data
 
             modelBuilder.Entity<Product>().HasData(products);
 
-            var orderItems = new List<OrderItem>
-            {
-                new OrderItem { Id = 1, ProductId = 1, Quantity = 2, OrdersId = 1 },
-                new OrderItem { Id = 2, ProductId = 2, Quantity = 1, OrdersId = 1 },
-                new OrderItem { Id = 3, ProductId = 4, Quantity = 1, OrdersId = 2 },
-                new OrderItem { Id = 4, ProductId = 5, Quantity = 1, OrdersId = 2 },
-                new OrderItem { Id = 5, ProductId = 3, Quantity = 3, OrdersId = 3 },
-                new OrderItem { Id = 6, ProductId = 6, Quantity = 1, OrdersId = 3 },
-                new OrderItem { Id = 7, ProductId = 7, Quantity = 2, OrdersId = 3 }
-            };
-
-            modelBuilder.Entity<OrderItem>().HasData(orderItems);
+            
 
 
         }

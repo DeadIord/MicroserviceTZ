@@ -5,17 +5,16 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using RabbitMQ.Client;
+using SearchService.Core.Commands;
 using Serilog;
 using System;
 using System.Text;
-using SearchService.Rabbit;
-using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
 
 
-namespace SearchService
+namespace OrderService
 {
     public class Startup
     {
@@ -31,24 +30,25 @@ namespace SearchService
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SearchService", Version = "v1" });
             });
+
             services.AddMassTransit(x =>
             {
-
+                x.AddRequestClient<SearchRequest>();
                 x.UsingRabbitMq((context, cfg) =>
                 {
-
                     var rabbitMqConfig = Configuration.GetSection("RabbitMQ");
-                    cfg.Host(rabbitMqConfig["Hostname"], h =>
+                    cfg.Message<SearchRequest>(x => x.SetEntityName("SearchConsumerQueue"));
+
+                    
+                    cfg.Host(new Uri(rabbitMqConfig["Hostname"]), h =>
                     {
                         h.Username(rabbitMqConfig["Username"]);
                         h.Password(rabbitMqConfig["Password"]);
                     });
-
-                    cfg.ConfigureEndpoints(context);
                 });
 
-
             });
+
 
             services.AddScoped<SearchServices>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace UserService.Models
+namespace UserService.Data
 {
     public class User
     {

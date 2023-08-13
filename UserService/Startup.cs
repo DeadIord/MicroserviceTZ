@@ -9,7 +9,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using OrderService.Core.Commands;
 using RabbitMQ.Client;
+using SearchService.Core.Commands;
 using Serilog;
 using System;
 using System.Text;
@@ -39,26 +41,34 @@ namespace UserService
             Configuration.GetConnectionString("UserConnection"),
             sqlOptions => sqlOptions.CommandTimeout(60)));
             services.AddScoped<UserServices>();
+   
             services.AddMassTransit(config =>
             {
-                config.AddConsumer<SearchRequestHandler>().Endpoint(configure: x => x.Name = "searchconsumer");
-                config.AddRequestClient<SearchRequest>(destinationAddress: new Uri("exchange:searchconsumer"));
+                config.AddConsumer<SearchRequestHandler>();
+                config.AddRequestClient<RequestForOrderHistory>();
+
                 config.UsingRabbitMq((context, cfg) =>
                 {
                     var rabbitMqConfig = Configuration.GetSection("RabbitMQ");
+                    cfg.Message<RequestForOrderHistory>(x => x.SetEntityName("ListProductsOrderConsumer"));
+
+
+                    cfg.ReceiveEndpoint("SearchConsumerQueue", x =>
+                    {
+                        x.ConfigureConsumer<SearchRequestHandler>(context);
+                        x.ConfigureConsumeTopology = false;
+                        x.Bind("SearchConsumerExchange");
+                    });
+
                     cfg.Host(new Uri(rabbitMqConfig["Hostname"]), h =>
                     {
                         h.Username(rabbitMqConfig["Username"]);
                         h.Password(rabbitMqConfig["Password"]);
                     });
-                    cfg.ConfigureEndpoints(context);
                 });
+
             });
-            services.AddScoped<IPublishEndpoint>(provider =>
-            {
-                var busControl = provider.GetRequiredService<IBusControl>();
-                return busControl;
-            });
+           
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
